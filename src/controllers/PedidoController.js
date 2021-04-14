@@ -21,11 +21,11 @@ module.exports = {
 
     async store(req, res){
         const { 
-            idUsuario,
+            idCliente,
             valorTotal
         } = req.body        
         
-        await Pedido.create({ idUsuario, valorTotal })
+        await Pedido.create({ idCliente, valorTotal })
         .then(response => {
             return res.status(200).json(response)
         })

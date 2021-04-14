@@ -8,11 +8,11 @@ module.exports = {
                 primaryKey: true,
                 autoIncrement: true,
             },
-            idUsuario: {
+            idCliente: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
                 references: {
-                    model: 'Usuarios',
+                    model: 'Clientes',
                     key: 'id'
                 },
                 onUpdate: 'CASCADE',

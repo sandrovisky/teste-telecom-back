@@ -10,7 +10,7 @@ class Pedido extends Model {
         })
     }
     static associate(models) {
-        this.belongsTo(models.Usuario, { foreignKey: 'idUsuario', as: 'usuario' })
+        this.belongsTo(models.Usuario, { foreignKey: 'idCliente', as: 'cliente' })
         this.hasMany(models.PedidoProduto, { foreignKey: 'idPedido', as: 'produtos' })
     }
 } 
