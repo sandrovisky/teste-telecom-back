@@ -1,11 +1,20 @@
 const Pedido = require('../model/Pedido')
+const PedidoProduto = require('../model/PedidoProduto')
 
 module.exports = {
 
     async index(req, res){
         const result =  await Pedido.findAll({ include: [
             {
-                association: 'produtos'
+                association: 'produtos',
+                include: [
+                    {
+                        association: 'produto'
+                    }
+                ]
+            },
+            {
+                association: 'cliente'
             }
         ]})
         return res.json(result)
@@ -22,13 +31,20 @@ module.exports = {
     async store(req, res){
         const { 
             idCliente,
-            valorTotal
+            valorTotal,
+            produtos
         } = req.body        
         
-        await Pedido.create({ idCliente, valorTotal })
+        const pedido = await Pedido.create({ idCliente, valorTotal })
         .then(response => {
-            return res.status(200).json(response)
+            return response
         })
+
+        produtos.map(async produto => {
+            await PedidoProduto.create({ idPedido: pedido.id, idProduto: produto })
+        })
+
+        return res.status(200).json(pedido)
     }
 }
 

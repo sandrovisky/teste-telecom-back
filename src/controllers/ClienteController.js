@@ -4,12 +4,14 @@ module.exports = {
 
     async index(req, res){
         const result =  await Cliente.findAll()
-        return res.json(result)
+        return res.status(200).json(result)
     },
 
     async delete(req, res){
 
-        await Cliente.destroy({ where: req.params })
+        const { id } = req.params
+
+        await Cliente.destroy({ where: id })
         .then(async response => {
             return res.json({ message: "deletado com sucesso"})
         })
