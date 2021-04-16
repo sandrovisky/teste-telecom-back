@@ -51,7 +51,7 @@ $ npm install ou yarn install
 configure as variaveis de ambiente seguindo o exemplo do arquivo .env.examples
 
 # Execute o comando que iá criar as tabelas no banco de dados
-$ yarn sequelize db:migrate ou np sequelize db:migrate
+$ yarn sequelize db:migrate ou npx sequelize db:migrate
 
 # Execute a aplicação 
 $ yarn start ou npm start
